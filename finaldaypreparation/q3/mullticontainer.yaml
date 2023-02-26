@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: deployment-xyz
+  name: deployment-xyz
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deployment-xyz
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: deployment-xyz
+    spec:
+      volumes:
+      - name: my-volume
+        emptyDir: {}
+      - name: my-cm
+        configMap:
+          name: adapercm  
+      containers:
+      - image: busybox
+        name: logger-dev 
+        resources: {}
+        volumeMounts:
+        - name: my-volume
+          mountPath: /tmp/log
+        command: ["/bin/sh", "-c"," while true; do echo 'i luv cncf' >> /tmp/log/input.log ; sleep 10; done"] 
+      - image: busybox
+        name: adapter-zen
+        command: ["/bin/sh" , "-c" , " tail -f /tmp/log/input.log >> /tmp/log/output.log"]
+        volumeMounts:
+        - name: my-volume
+          mountPath: /tmp/log
+        - name: my-cm
+          mountPath: /fluentd/etc
+status: {}

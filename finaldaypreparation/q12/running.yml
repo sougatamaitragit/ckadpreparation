@@ -1,0 +1,104 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"creationTimestamp":null,"labels":{"run":"nginxsvc"},"name":"nginxsvc","namespace":"default"},"spec":{"containers":[{"image":"nginx","name":"nginxsvc","ports":[{"containerPort":90}],"resources":{}}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always"},"status":{}}
+  creationTimestamp: "2023-02-20T14:10:55Z"
+  labels:
+    run: nginxsvc
+  name: nginxsvc
+  namespace: default
+  resourceVersion: "2541388"
+  uid: dc586677-c59d-4a94-b957-6b61f580e0e2
+spec:
+  containers:
+  - image: nginx
+    imagePullPolicy: Always
+    name: nginxsvc
+    ports:
+    - containerPort: 8080 
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-89227
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: pool-0bnhbrifi-qqp0c
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-89227
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2023-02-20T14:10:55Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2023-02-20T14:10:58Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2023-02-20T14:10:58Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2023-02-20T14:10:55Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://4b1c41479f6c4898884cea0f9dd4e7be63f93fbfec78503b583b33a89f5a4b9e
+    image: docker.io/library/nginx:latest
+    imageID: docker.io/library/nginx@sha256:6650513efd1d27c1f8a5351cbd33edf85cc7e0d9d0fcb4ffb23d8fa89b601ba8
+    lastState: {}
+    name: nginxsvc
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2023-02-20T14:10:57Z"
+  hostIP: 10.110.0.2
+  phase: Running
+  podIP: 10.244.0.100
+  podIPs:
+  - ip: 10.244.0.100
+  qosClass: BestEffort
+  startTime: "2023-02-20T14:10:55Z"
