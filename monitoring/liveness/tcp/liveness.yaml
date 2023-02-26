@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: liveness
+  name: liveness
+spec:
+  containers:
+  - image: registry.k8s.io/goproxy:0.1
+    name: liveness
+    resources: {}
+    livenessProbe:
+    tcpSocket:
+      port: 8080
+    initialDelaySeconds: 5
+    periodSeconds: 5
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
