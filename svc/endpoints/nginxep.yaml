@@ -1,0 +1,16 @@
+apiVersion: discovery.k8s.io/v1 
+kind: EndpointSlice
+metadata:
+  name: nginx
+  labels:
+    kubernetes.io/service-name: nginx
+addressType: IPv4
+ports:
+  - protocol: TCP
+    appProtocol: http
+    port: 80
+endpoints:
+ - addresses:
+    - "10.244.0.72"
+    - "10.244.0.117"
+    - "10.244.0.86"

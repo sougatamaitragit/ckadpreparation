@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: busybox
+  name: busybox
+spec:
+  containers:
+  - image: busybox
+    name: busybox
+    resources: {}
+    volumeMounts:
+    - name: my-volume
+      mountPath: /etc/logs
+    args:
+    - /bin/sh
+    - -c
+    - echo "Hello Sougata Maitra" > etc/logs/log.txt ; sleep 500
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: newpvc 
+status: {}
