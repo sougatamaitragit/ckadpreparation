@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  creationTimestamp: null
+  name: mycron
+spec:
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+      name: mycron
+    spec:
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - image: busybox
+            name: mycron
+            resources: {}
+            command: ["/bin/echo","Hello world"]
+          restartPolicy: OnFailure
+  schedule: "5 * * * *"
+  successfulJobsHistoryLimit: 5
+  failedJobsHistoryLimit: 10
+  concurrencyPolicy: Forbid
+status: {}

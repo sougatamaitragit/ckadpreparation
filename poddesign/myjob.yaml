@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  creationTimestamp: null
+  name: myjob
+spec:
+  conditions: 4
+  parallelism: 2
+  ttlSecondsAfterFisnished: 10
+  activeDeadlineSeconds: 40
+  completionMode: "Indexed"  
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - image: busybox
+        name: myjob
+        resources: {}
+        command: ["/bin/echo","Hello World"]
+      restartPolicy: Never
+status: {}
