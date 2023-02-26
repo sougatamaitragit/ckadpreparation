@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginxv2
+  name: nginxv2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: canary 
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: canary
+    spec:
+      containers:
+      - image: nginxdemos/hello
+        name: hello
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}

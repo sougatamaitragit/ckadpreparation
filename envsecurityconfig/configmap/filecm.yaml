@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  log4j1.properties: |
+    logger=log4j1
+  log4j2.properties: |
+    logger=log4j2
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: filecm
