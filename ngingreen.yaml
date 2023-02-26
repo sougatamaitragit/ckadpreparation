@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginxgreen
+  name: nginxgreen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginxgreen
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginxgreen
+    spec:
+      containers:
+      - image: nginxdemos/hello
+        name: hello
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
