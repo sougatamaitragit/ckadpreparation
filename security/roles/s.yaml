@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: build-bot-secret
+  annotations:
+    kubernetes.io/service-account.name: build-bot
+type: kubernetes.io/service-account-token
