@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  log4j1.properties: |
+    loggger.version=logger1
+  log4j2.properties: |
+    loggger.version=logger2
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: logcm
