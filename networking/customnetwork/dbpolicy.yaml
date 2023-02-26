@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1 
+kind: NetworkPolicy
+metadata:
+  name: dbpolicy
+spec:
+  podSelector:
+    matchLabels:
+      app: database 
+  policyTypes:
+    - Ingress
+    - Egress
+    ingress:
+    - from:
+        - podSeclector:
+            matchLabels:
+              app: backend 
+      ports:
+      - port: 80
+        protocol: TCP
+    egress:
+    - to:
+      - podSelector: {}
+    
+

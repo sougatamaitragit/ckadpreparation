@@ -1,0 +1,6 @@
+1. Create a pod for Backend 
+2. Create a pod for Frontend
+3. Create a pod for database
+4. Backend pod only can receive request from Frontend pod; Backend pod only can send request to database pod;
+5. Frontend pod only able to send request to backend po;
+6. Database pod is only able to receive request from backend . Database pod is not able to send any request to any other pods.
